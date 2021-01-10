@@ -34,7 +34,7 @@ class PollController extends Controller
 
         $votes = PollUser::all();
 
-        return view('polls.index')->compact(['polls', 'votes']);
+        return view('polls.index', ['polls' => $polls, 'votes' => $votes]);
     }
 
     /**
@@ -63,14 +63,14 @@ class PollController extends Controller
             'title' => 'required|min:6',
             'description' => 'required',
             'image' => 'required|image',
-            'coop_id' => 'required', 
+            'coop_id' => 'required',
             'option' => 'required'
         ]);
 
         // Ruta imagen y fecha.
         $image_path = $request['image']->store('upload-recetas', 'public');
         $date = Carbon::now();
-        
+
         // Insertar votacion.
         Poll::create([
             'title' => $data['title'],
@@ -88,17 +88,17 @@ class PollController extends Controller
         $number = count($request["option"]);
 
         // Creamos un array listo para insertar
-        for($i=0; $i<$number; $i++){  
-            if(trim($request["option"][$i] != '')){  
+        for ($i = 0; $i < $number; $i++) {
+            if (trim($request["option"][$i] != '')) {
                 $insert_option[] = [
                     'option'    => $request["option"][$i],
                     'poll_id'   => $poll_id,
                     'updated_at' => $date,
                     'created_at' => $date
                 ];
-            }  
-        } 
-        
+            }
+        }
+
         // Insertamos las opciones con su votacion correspondiente
         Option::insert($insert_option);
 
@@ -121,14 +121,22 @@ class PollController extends Controller
         $votes = Vote::where('poll_id', $id)->get();
         $total_votes = $votes->count();
         $votes_by_option = $votes->groupBy('option_id');
-    
+
         $user_id = auth()->user()->id;
-        
-        $match = PollUser::where([['user_id', '=', $user_id],['poll_id', '=', $id]])->firstOr(function () {
+
+        $match = PollUser::where([['user_id', '=', $user_id], ['poll_id', '=', $id]])->firstOr(function () {
             return false;
         });
-    
-        return view('polls.show')->compact(['poll', 'votes_by_option', 'match', 'total_votes']);
+
+        return view(
+            'polls.show',
+            [
+                'poll' => $poll,
+                'votes_by_option' => $votes_by_option,
+                'match' => $match,
+                'total_votes' => $total_votes
+            ]
+        );
     }
 
     /**
@@ -146,11 +154,11 @@ class PollController extends Controller
         $poll = Poll::find($id);
         $user_id = auth()->user()->id;
         $poll_id = $poll->id;
-        
-        $match = PollUser::where([['user_id', '=', $user_id],['poll_id', '=', $poll_id]])->firstOr(function () {
+
+        $match = PollUser::where([['user_id', '=', $user_id], ['poll_id', '=', $poll_id]])->firstOr(function () {
             return false;
         });
-        
+
         if (!$match) {
             Vote::create([
                 'option_id' => $data['vote'],

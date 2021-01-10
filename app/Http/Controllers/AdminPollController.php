@@ -14,6 +14,6 @@ class AdminPollController extends Controller
         $polls = Poll::where('coop_id', $user_coop_id)->paginate(5);
         $votes = PollUser::all();
         
-        return view('admin.poll')->compact(['polls', 'votes']);
+        return view('admin.poll', ['polls' => $polls, 'votes' => $votes]);
     }
 }

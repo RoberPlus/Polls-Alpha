@@ -1,5 +1,5 @@
 @guest
-<a class="text-white text-sm uppercase font-bold p-3 {{ Request::is('/') ? 'bg-green-500' : '' }}" href="{{ route('home') }}">Inicio</a>
+    <a class="text-white text-sm uppercase font-bold p-3 {{ Request::is('/') ? 'bg-green-500' : '' }}" href="{{ route('home') }}">Inicio</a>
 @else
     <a class="text-white text-sm uppercase font-bold p-3 {{ Request::is('/') ? 'bg-green-500' : '' }}" href="{{ route('home') }}">Inicio</a>
     <a class="text-white text-sm uppercase font-bold p-3 {{ Request::is('polls') ? 'bg-green-500' : '' }}" href="{{ route('polls.index') }}">Ver Votaciones</a>
