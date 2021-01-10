@@ -34,7 +34,7 @@ class PollController extends Controller
 
         $votes = PollUser::all();
 
-        return view('polls.index')->with('polls', $polls)->with('votes', $votes);
+        return view('polls.index')->compact(['polls', 'votes']);
     }
 
     /**
@@ -128,11 +128,7 @@ class PollController extends Controller
             return false;
         });
     
-        return view('polls.show')
-            ->with('poll', $poll)
-            ->with('votes_by_option', $votes_by_option)
-            ->with('match', $match)
-            ->with('total_votes', $total_votes);
+        return view('polls.show')->compact(['poll', 'votes_by_option', 'match', 'total_votes']);
     }
 
     /**
