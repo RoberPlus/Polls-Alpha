@@ -16,4 +16,16 @@ class AdminPollController extends Controller
         
         return view('admin.poll', ['polls' => $polls, 'votes' => $votes]);
     }
+
+    public function delete($id)
+    {
+        $poll = Poll::findOrFail($id);
+
+        $poll->delete();
+
+        $success = 'Eliminado con exito';
+
+        return redirect()->back()
+                ->with('message', $success);
+    }
 }

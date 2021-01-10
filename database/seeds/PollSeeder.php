@@ -19,6 +19,7 @@ class PollSeeder extends Seeder
                 'description' => 'Esto es una pequena descripcion de prueba',
                 'image' => 'image.jpg',
                 'coop_id' => 2,
+                'status' => 'active',
                 'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s')
             ],
@@ -27,6 +28,7 @@ class PollSeeder extends Seeder
                 'description' => 'Esto es una pequena descripcion de prueba',
                 'image' => 'image.jpg',
                 'coop_id' => 1,
+                'status' => 'active',
                 'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s')
             ],
@@ -35,6 +37,7 @@ class PollSeeder extends Seeder
                 'description' => 'Esto es una pequena descripcion de prueba',
                 'image' => 'image.jpg',
                 'coop_id' => 2,
+                'status' => 'active',
                 'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s')
             ],
@@ -43,6 +46,7 @@ class PollSeeder extends Seeder
                 'description' => 'Esto es una pequena descripcion de prueba',
                 'image' => 'image.jpg',
                 'coop_id' => 1,
+                'status' => 'disable',
                 'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s')
             ],
@@ -50,6 +54,7 @@ class PollSeeder extends Seeder
                 'title' => 'Titulo prueba 5',
                 'description' => 'Esto es una pequena descripcion de prueba',
                 'image' => 'image.jpg',
+                'status' => 'active',
                 'coop_id' => 2,
                 'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s')

@@ -70,7 +70,7 @@
                     @foreach ($polls as $poll)
                         <div class="flex flex-row mt-2">
                             <div class="flex w-full items-center justify-between bg-white
-                                        dark:bg-gray-800 px-8 py-6 border-l-4 border-green-500
+                                        dark:bg-gray-800 px-8 py-6 border-l-4 @if($poll->status == 'active')border-green-500 @else border-gray-500 @endif
                                         dark:border-green-300">
                                 <!-- card -->
                                 <div class="flex">
@@ -138,31 +138,32 @@
                                                     </path>
                                                 </svg>
                                                 <span>Cambiar Active/Disable</span>
-                                            </button>
-
-                                            <button class="flex items-center ml-4
-                                                        focus:outline-none border rounded-full
-                                                        py-2 px-6 leading-none border-red-500
-                                                        dark:border-blue-600 select-none
-                                                        hover:bg-red-400 hover:text-white
-                                                        dark-hover:text-gray-200">
-                                                <svg class="h-5 w-5 mr-2 text-red-500" fill="none" stroke="currentColor"
-                                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
-                                                    </path>
-                                                </svg>
-                                                <span>Eliminar</span>
-                                            </button>
-
+                                            </button><form action="{{ route('polls.destroy', ['id' => $poll->id]) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="flex items-center ml-4
+                                                            focus:outline-none border rounded-full
+                                                            py-2 px-6 leading-none border-red-500
+                                                            dark:border-blue-600 select-none
+                                                            hover:bg-red-400 hover:text-white
+                                                            dark-hover:text-gray-200">
+                                                    <svg class="h-5 w-5 mr-2 text-red-500" fill="none" stroke="currentColor"
+                                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                                                        </path>
+                                                    </svg>
+                                                    <span>Eliminar</span>
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="flex flex-col -mt-10 mr-20">
-                                    <span class="font-semibold text-green-500
+                                    <span class="font-semibold @if($poll->status == 'active')text-green-500 @else text-gray-500 @endif
                                                 dark:text-green-300">
-                                        Active
+                                        {{ $poll->status }}
                                     </span>
                                 </div>
                             </div>

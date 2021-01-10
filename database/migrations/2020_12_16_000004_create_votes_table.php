@@ -15,8 +15,8 @@ class CreateVotesTable extends Migration
     {
         Schema::create('votes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('option_id');
-            $table->unsignedBigInteger('poll_id');
+            $table->unsignedBigInteger('option_id')->onDelete('cascade');;
+            $table->unsignedBigInteger('poll_id')->onDelete('cascade');;
             $table->timestamps();
         });
         Schema::table('votes', function($table) {

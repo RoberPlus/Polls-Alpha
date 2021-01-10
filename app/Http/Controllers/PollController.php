@@ -77,6 +77,7 @@ class PollController extends Controller
             'description' => $data['description'],
             'coop_id' => auth()->user()->coop_id,
             'image' => $image_path,
+            'status' => 'active',
             'created_at' => $date
         ]);
 

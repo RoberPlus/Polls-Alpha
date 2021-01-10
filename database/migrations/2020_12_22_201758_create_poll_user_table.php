@@ -15,8 +15,8 @@ class CreatePollUserTable extends Migration
     {
         Schema::create('poll_user', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('poll_id');
+            $table->unsignedBigInteger('user_id')->onDelete('cascade');
+            $table->unsignedBigInteger('poll_id')->onDelete('cascade');
             $table->timestamps();
         });
         Schema::table('poll_user', function($table) {

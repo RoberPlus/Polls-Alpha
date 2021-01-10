@@ -25,6 +25,9 @@ Route::get('/polls/create', 'PollController@create')->name('polls.create');
 Route::post('/polls', 'PollController@store')->name('polls.store');
 Route::get('/polls/{id}', 'PollController@show')->name('polls.show');
 
+// Admin
+Route::delete('/polls/{id}', 'AdminPollController@delete')->name('polls.destroy');
+
 // Votar
 Route::post('/polls/{id}', 'PollController@vote')->name('polls.vote');
 

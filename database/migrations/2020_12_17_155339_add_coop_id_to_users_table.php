@@ -14,7 +14,7 @@ class AddCoopIdToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('coop_id');
+            $table->unsignedBigInteger('coop_id')->onDelete('cascade');
         });
         Schema::table('users', function($table) {
             $table->foreign('coop_id')->references('id')->on('coops');

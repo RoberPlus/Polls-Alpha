@@ -16,7 +16,7 @@ class CreateOptionsTable extends Migration
         Schema::create('options', function (Blueprint $table) {
             $table->id();
             $table->string('option');
-            $table->unsignedBigInteger('poll_id');
+            $table->unsignedBigInteger('poll_id')->onDelete('cascade');;
             $table->timestamps();
         });
         Schema::table('options', function($table) {
