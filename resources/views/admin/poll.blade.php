@@ -125,7 +125,10 @@
                                         </div>
 
                                         <div class="mt-4 flex">
-                                            <button class="flex items-center
+                                            <form method="POST" action="{{ route('polls.update', ['id' => $poll->id]) }}" enctype="multipart/form-data" novalidate>
+                                                @csrf
+                                                @method('PUT')
+                                            <button type="submit" class="flex items-center
                                                         focus:outline-none border rounded-full
                                                         py-2 px-6 leading-none border-gray-500
                                                         dark:border-gray-600 select-none
@@ -138,7 +141,9 @@
                                                     </path>
                                                 </svg>
                                                 <span>Cambiar Active/Disable</span>
-                                            </button><form action="{{ route('polls.destroy', ['id' => $poll->id]) }}" method="POST">
+                                            </button>
+                                        </form>
+                                            <form action="{{ route('polls.destroy', ['id' => $poll->id]) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="flex items-center ml-4

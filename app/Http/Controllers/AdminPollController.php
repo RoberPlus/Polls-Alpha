@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class AdminPollController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth']);
+    }
+
     public function index()
     {
         $user_coop_id = auth()->user()->coop_id;
@@ -25,7 +30,24 @@ class AdminPollController extends Controller
 
         $success = 'Eliminado con exito';
 
-        return redirect()->back()
-                ->with('message', $success);
+        return redirect()->back()->with('message', $success);
+    }
+
+    public function update($id)
+    {
+        $poll = Poll::findOrFail($id);
+
+        $status = $poll->status;
+
+        if ($status == 'active') {
+            $poll->status = 'disable';
+            $poll->save();
+        }else {
+            $poll->status = 'active';
+            $poll->save();
+        }
+        $changed = 'Modificado con exito!';
+
+        return redirect()->back()->with('message', $changed);
     }
 }
