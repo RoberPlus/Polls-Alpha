@@ -13,7 +13,9 @@
     <!-- item card -->
     <div class="md:flex shadow-lg  mx-6 md:mx-auto my-10 max-w-full h-68">
         <img class="h-full w-full md:w-1/3  object-cover rounded-lg rounded-r-none pb-5/6"
-            src="{{ Storage::url("{$poll->image}") }}" alt="bag">
+        {{-- Change in prod --}}
+        {{-- src= {{ Storage::url("{$poll->image}") }} --}}
+            src="{{$poll->image}}" alt="bag">
         <div class="w-full md:w-2/3 px-10 py-7 bg-white rounded-lg rounded-l-none">
             <div class="flex items-center">
                 <h2 class="text-2xl my-3 text-gray-800 font-medium mr-auto">{{ $poll->title }}</h2>

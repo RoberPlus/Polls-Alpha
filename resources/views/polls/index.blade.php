@@ -11,7 +11,9 @@
                 <div
                     class="flex flex-col items-stretch min-h-full pb-4 mb-6 transition-all duration-150 bg-white rounded-lg shadow-lg hover:shadow-2xl">
                     <div class="md:flex-shrink-0">
-                        <img src="{{ Storage::url("{$poll->image}") }}" alt="Blog Cover"
+                        {{-- Change in prod --}}
+                        {{-- src= {{ Storage::url("{$poll->image}") }} --}}
+                        <img src="{{ $poll->image }}" alt="Blog Cover"
                             class="object-fill w-full rounded-lg rounded-b-none md:h-56" />
                     </div>
                     <div class="flex items-center justify-between px-4 py-2 overflow-hidden">
@@ -19,28 +21,6 @@
                             Votacion
                         </span>
                         <div class="flex flex-row items-center">
-                            {{-- <div class="text-xs font-medium text-gray-500 flex flex-row items-center mr-2">
-                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
-                                    </path>
-                                </svg>
-                                <span>1.5k</span>
-                            </div> --}}
-
-                            {{-- <div class="text-xs font-medium text-gray-500 flex flex-row items-center mr-2">
-                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z">
-                                    </path>
-                                </svg>
-                                <span>25</span>
-                            </div> --}}
-                            
                             <div class="text-xs font-medium text-gray-500 flex flex-row items-center">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
                                 <span>{{ $votes->where('poll_id', $poll->id)->count() }}</span>
@@ -73,7 +53,7 @@
                                     <span class="text-xs text-gray-600">{{$poll->created_at->toFormattedDateString()}}</span>
                                 </div>
                             </div>
-                            <p class="mt-1 text-xs text-gray-600">Activa</p>
+                            <p class="mt-1 text-xs text-gray-600">{{ ucfirst($poll->status) }}</p>
                         </div>
                     </section>
                 </div>

@@ -28,9 +28,9 @@ class UserSeeder extends Seeder
                 'name' => 'Rober2',
                 'email' => 'correo2@correo.com',
                 'password' => bcrypt('12345678'),
-                'coop_id' => 2,
-                'role' => 'veedor',
+                'coop_id' => 1,
                 'email_verified_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
+                'role' => 'veedor',
                 'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s')
             ]
