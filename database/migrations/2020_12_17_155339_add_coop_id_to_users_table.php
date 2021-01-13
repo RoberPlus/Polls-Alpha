@@ -29,6 +29,7 @@ class AddCoopIdToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function($table) {
+            $table->dropForeign('users_coop_id_foreign');
             $table->dropColumn('coop_id');
         });
     }

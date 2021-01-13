@@ -10,7 +10,7 @@
         @forelse($polls as $poll)
             <div class="transition-all duration-150 flex w-full px-4 py-6 md:w-1/2 lg:w-1/3">
                 <div
-                    class="flex flex-col items-stretch min-h-full pb-4 mb-6 transition-all duration-150 bg-white rounded-lg shadow-lg hover:shadow-2xl">
+                    class="flex flex-col items-stretch min-h-full pb-4 mb-6 transition-all duration-150 @if($poll->status == 'disable') bg-gray-200 @else bg-white @endif rounded-lg shadow-lg hover:shadow-2xl">
                     <!-- Poll Image -->
                     <div class="md:flex-shrink-0">
                         {{-- Change in prod --}}
