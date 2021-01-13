@@ -30,7 +30,7 @@ class AdminPollController extends Controller
 
         $success = 'Eliminado con exito';
 
-        return redirect()->back()->with('message', $success);
+        return redirect()->action('AdminPollController@index')->with('status', 'Profile updated!');
     }
 
     public function update($id)
@@ -45,9 +45,9 @@ class AdminPollController extends Controller
         }else {
             $poll->status = 'active';
             $poll->save();
+            
         }
-        $changed = 'Modificado con exito!';
 
-        return redirect()->back()->with('message', $changed);
+        return redirect()->action('AdminPollController@index')->with('status', 'Profile updated!');
     }
 }

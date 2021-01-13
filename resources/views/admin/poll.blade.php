@@ -4,6 +4,15 @@
     @include('ui.adminnav')
 @endsection
 
+@section('messages')
+
+        <div class="bg-orange-lightest border-l-4 border-orange text-orange-dark p-4" role="alert">
+            <p class="font-bold">Be Warned</p>
+            <p>{{$status ?? ''}}</p>
+        </div>
+
+@endsection
+
 @section('content')
     <div class="h-screen flex">
         <main class="flex-1 bg-gray-200 dark:bg-gray-900 overflow-y-auto transition duration-500 ease-in-out">

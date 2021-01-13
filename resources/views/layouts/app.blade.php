@@ -59,6 +59,9 @@
                 @yield('nav')
             </nav>
         </div>
+        <div>
+            @yield('messages')
+        </div>
         <main class="mt-10 container mx-auto">
             @yield('content')
         </main>
