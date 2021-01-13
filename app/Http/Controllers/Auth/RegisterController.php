@@ -69,7 +69,8 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'coop_id' => $data['coop_id']
+            'coop_id' => $data['coop_id'],
+            'role' => 'user'
         ]);
     }
 }
