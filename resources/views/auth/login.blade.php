@@ -1,61 +1,82 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mx-auto">
-    <div class="flex flex-wrap justify-center">
-        <div class="w-full max-w-sm">
-            <div class="flex flex-col break-words bg-white border border-2 shadow-md mt-10">
-                <div class="bg-gray-300 text-gray-700 uppercase text-center py-3 px-6 mb-0">
-                    {{ __('Login')}}
-                </div>  
-                   
-                <form  class="py-10 px-5" method="POST" action="{{ route('login') }}" novalidate>
-                    @csrf
-
-                    <div class="flex flex-wrap mb-6">
-                        <label for="email" class="block text-gray-700 text-sm mb-2">{{ __('E-Mail Address') }}</label>
-                        <input id="email" type="email" class="p-3 bg-gray-100 roundend form-input w-full @error('email') border-red-500 border  @enderror" name="email" value="{{ old('email') }}" autocomplete="email" autofocus>
-
-                        @error('email')
-                            <span class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 w-full mt-5 text-sm" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+    <!-- Login Form Container -->
+    <div class="container mx-auto">
+        <div class="flex flex-wrap justify-center">
+            <div class="w-full max-w-sm">
+                <div class="flex flex-col break-words bg-white border border-2 shadow-md mt-10">
+                    <div class="bg-gray-300 text-gray-700 uppercase text-center py-3 px-6 mb-0">
+                        {{ __('Login') }}
                     </div>
 
-                    <div class="flex flex-wrap mb-6">
-                        <label for="password" class="block text-gray-700 text-sm mb-2">{{ __('Password') }}</label>
-                        <input id="password" type="password" class="p-3 bg-gray-100 roundend form-input w-full @error('password') border-red-500 border  @enderror" name="password" autocomplete="current-password">
+                    <!-- Login Form -->
+                    <form class="py-10 px-5" method="POST" action="{{ route('login') }}" novalidate>
+                        @csrf
 
-                        @error('password')
-                            <span class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 w-full mt-5 text-sm" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
+                        <!-- Email Input Form -->
+                        <div class="flex flex-wrap mb-6">
+                            <label for="email" class="block text-gray-700 text-sm mb-2">{{ __('E-Mail Address') }}</label>
+                            <input id="email" type="email"
+                                class="p-3 bg-gray-100 roundend form-input w-full @error('email') border-red-500 border  @enderror"
+                                name="email" value="{{ old('email') }}" autocomplete="email" autofocus>
 
-                    <div class="flex flex-wrap mb-6">
-                        <input class="mr-5" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                            @error('email')
+                                <span class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 w-full mt-5 text-sm"
+                                    role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <!-- End Email Input Form -->
 
-                        <label class="block text-gray-700 text-sm" for="remember">
-                            {{ __('Remember Me') }}
-                        </label>
-                    </div>
+                        <!-- Password Input Form -->
+                        <div class="flex flex-wrap mb-6">
+                            <label for="password" class="block text-gray-700 text-sm mb-2">{{ __('Password') }}</label>
+                            <input id="password" type="password"
+                                class="p-3 bg-gray-100 roundend form-input w-full @error('password') border-red-500 border  @enderror"
+                                name="password" autocomplete="current-password">
 
-                    <div class="flex flex-wrap">
-                        <button type="submit" class="bg-green-500 w-full hover:bg-green-700 text-gray-100 p-3 focus:outline-none focus:shadow-outline uppercase">
-                            {{ __('Login') }}
-                        </button>
+                            @error('password')
+                                <span class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 w-full mt-5 text-sm"
+                                    role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <!-- End Password Input Form -->
 
-                        @if (Route::has('password.request'))
-                            <a class="text-sm text-gray-500 mt-5 text-center w-full" href="{{ route('password.request') }}">
-                                {{ __('Forgot Your Password?') }}
-                            </a>
-                        @endif
-                    </div>
-                </form>       
+                        <!-- Remember Checkbox Form -->
+                        <div class="flex flex-wrap mb-6">
+                            <input class="mr-5" type="checkbox" name="remember" id="remember"
+                                {{ old('remember') ? 'checked' : '' }}>
+
+                            <label class="block text-gray-700 text-sm" for="remember">
+                                {{ __('Remember Me') }}
+                            </label>
+                        </div>
+                        <!-- End Remember Checkbox Form -->
+
+                        <!-- Submit and Forgot Password Link Form -->
+                        <div class="flex flex-wrap">
+                            <button type="submit"
+                                class="bg-green-500 w-full hover:bg-green-700 text-gray-100 p-3 focus:outline-none focus:shadow-outline uppercase">
+                                {{ __('Login') }}
+                            </button>
+
+                            @if (Route::has('password.request'))
+                                <a class="text-sm text-gray-500 mt-5 text-center w-full"
+                                    href="{{ route('password.request') }}">
+                                    {{ __('Forgot Your Password?') }}
+                                </a>
+                            @endif
+                        </div>
+                        <!-- End Submit and Forgot Password Link Form -->
+                    </form>
+                    <!-- End Login Form -->
+                </div>
             </div>
         </div>
     </div>
-</div>
+    <!-- End Login Form Container -->
 @endsection

@@ -10,7 +10,7 @@
 @endsection
 
 @section('content')
-    <!-- item card -->
+    <!-- Show Poll -->
     <div class="md:flex shadow-lg  mx-6 md:mx-auto my-10 max-w-full h-68">
         <img class="h-full w-full md:w-1/3  object-cover rounded-lg rounded-r-none pb-5/6"
         {{-- Change in prod --}}
@@ -54,7 +54,9 @@
             </div>
         </div>
     </div>
-    {{-- RESULTS --}}
+    <!-- End Show Poll -->
+
+    <!-- Show Results -->
     @if (auth()->user()->role == 'veedor')
         <div id="resultados" class="mx-auto bg-white shadow-lg rounded-lg my-10 px-4 py-4 max-w-md hidden">
             <div class="mb-1 tracking-wide px-4 py-4">
@@ -75,7 +77,7 @@
                             <div class="w-1/12 text-gray-700 pl-3">
                                 <span class="text-sm">{{ round((count($vote) / $total_votes) * 100) }}%</span>
                             </div>
-                        </div><!-- first -->
+                        </div>
                     @endforeach
                 </div>
             </div>
@@ -91,9 +93,9 @@
             @endif
         </div>
     @endif
+    <!-- End Show Results -->
 
-
-    {{-- VOTATION FORM --}}
+    <!-- Vote Form -->
     @if (!$match)
         <div id="votacion" class="bg-green-500 p-5 rounded m-3 w-2/5 mx-auto hidden">
             <h2 class="text-2xl my-5 text-white uppercase font-bold text-center">Selecciona tu voto</h2>
@@ -128,6 +130,7 @@
             </form>
         </div>
     @endif
+    <!-- End Vote Form -->
 @endsection
 
 @section('scripts')
@@ -144,6 +147,5 @@
                 $("#resultados").fadeToggle("slow", "linear");
             });
         });
-
     </script>
 @endsection
