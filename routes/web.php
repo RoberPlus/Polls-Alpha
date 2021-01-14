@@ -25,16 +25,22 @@ Route::get('/polls/create', 'PollController@create')->name('polls.create');
 Route::post('/polls', 'PollController@store')->name('polls.store');
 Route::get('/polls/{id}', 'PollController@show')->name('polls.show');
 
-// Admin
-Route::delete('/polls/{id}', 'AdminPollController@delete')->name('polls.destroy');
-Route::put('/polls/{id}/change', 'AdminPollController@update')->name('polls.update');
-
 // Votar
 Route::post('/polls/{id}', 'PollController@vote')->name('polls.vote');
 
 // Panel Admin Votaciones
 Route::get('/admin/polls', 'AdminPollController@index')->name('adminPoll.index');
 
+// Acciones Panel Admin Votaciones
+Route::delete('/polls/{id}', 'AdminPollController@delete')->name('polls.destroy');
+Route::put('/polls/{id}/change', 'AdminPollController@update')->name('polls.update');
+
+// Panel Admin Usuarios
+Route::get('/admin/users', 'AdminUserController@index')->name('adminUser.index');
+
+// Acciones Panel Admin Votaciones
+Route::delete('/users/{id}', 'AdminUserController@delete')->name('users.destroy');
+Route::put('/users/{id}/change', 'AdminUserController@update')->name('users.update');
 
 
 

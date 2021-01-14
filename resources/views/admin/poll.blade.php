@@ -143,21 +143,21 @@
                                             <form method="POST" action="{{ route('polls.update', ['id' => $poll->id]) }}" enctype="multipart/form-data" novalidate>
                                                 @csrf
                                                 @method('PUT')
-                                            <button type="submit" class="flex items-center
-                                                        focus:outline-none border rounded-full
-                                                        py-2 px-6 leading-none border-gray-500
-                                                        dark:border-gray-600 select-none
-                                                        hover:bg-gray-400 hover:text-white
-                                                        dark-hover:text-gray-200">
-                                                <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor"
-                                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
-                                                    </path>
-                                                </svg>
-                                                <span>Cambiar Active/Disable</span>
-                                            </button>
-                                        </form>
+                                                <button type="submit" class="flex items-center
+                                                            focus:outline-none border rounded-full
+                                                            py-2 px-6 leading-none border-gray-500
+                                                            dark:border-gray-600 select-none
+                                                            hover:bg-gray-400 hover:text-white
+                                                            dark-hover:text-gray-200">
+                                                    <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor"
+                                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                                        </path>
+                                                    </svg>
+                                                    <span>Cambiar Active/Disable</span>
+                                                </button>
+                                            </form>
                                             <form action="{{ route('polls.destroy', ['id' => $poll->id]) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
