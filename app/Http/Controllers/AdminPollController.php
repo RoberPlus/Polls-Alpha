@@ -18,25 +18,21 @@ class AdminPollController extends Controller
         $user_coop_id = auth()->user()->coop_id;
         $polls = Poll::where('coop_id', $user_coop_id)->paginate(5);
         $votes = PollUser::all();
-        $status_message = 'nada que mostrar';
-        return view('admin.poll', ['polls' => $polls, 'votes' => $votes, 'status_message' => $status_message]);
+
+        return view('admin.poll', ['polls' => $polls, 'votes' => $votes]);
     }
 
     public function delete($id)
     {
         $poll = Poll::findOrFail($id);
-
         $poll->delete();
 
-        $status_message = 'Se ha eliminado el registro con exito';
-
-        return redirect()->action('AdminPollController@index')->with('status_message', $status_message);
+        return redirect()->back()->with('success', 'Se ha eliminado la votacion con exito!');
     }
 
     public function update($id)
     {
         $poll = Poll::findOrFail($id);
-
         $status = $poll->status;
 
         if ($status == 'active') {
@@ -48,8 +44,6 @@ class AdminPollController extends Controller
             
         }
 
-        //$status_message = 'Se ha modificado la votacion con exito!';
         return redirect()->back()->with('success', 'Se ha modificado la votacion con exito!'); 
-        //return redirect()->action('AdminPollController@index')->with(['status' => $status, 'status_message'=> $status_message]);
     }
 }

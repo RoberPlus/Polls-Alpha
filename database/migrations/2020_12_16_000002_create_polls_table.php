@@ -22,7 +22,7 @@ class CreatePollsTable extends Migration
             $table->timestamps();
         });
         Schema::table('polls', function($table) {
-            $table->foreign('coop_id')->references('id')->on('coops');
+            $table->foreign('coop_id')->references('id')->on('coops')->onDelete('cascade');
         });
     }
 

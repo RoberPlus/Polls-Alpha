@@ -16,11 +16,11 @@ class CreateOptionsTable extends Migration
         Schema::create('options', function (Blueprint $table) {
             $table->id();
             $table->string('option');
-            $table->unsignedBigInteger('poll_id')->onDelete('cascade');;
+            $table->unsignedBigInteger('poll_id');
             $table->timestamps();
         });
         Schema::table('options', function($table) {
-            $table->foreign('poll_id')->references('id')->on('polls');
+            $table->foreign('poll_id')->references('id')->on('polls')->onDelete('cascade');
         });
     }
 
@@ -31,6 +31,6 @@ class CreateOptionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('options');
+        Schema::dropIfExists('options');     
     }
 }

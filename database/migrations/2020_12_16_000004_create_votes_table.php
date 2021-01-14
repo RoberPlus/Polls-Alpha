@@ -15,13 +15,13 @@ class CreateVotesTable extends Migration
     {
         Schema::create('votes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('option_id')->onDelete('cascade');;
-            $table->unsignedBigInteger('poll_id')->onDelete('cascade');;
+            $table->unsignedBigInteger('option_id');
+            $table->unsignedBigInteger('poll_id');
             $table->timestamps();
         });
         Schema::table('votes', function($table) {
-            $table->foreign('option_id')->references('id')->on('options');
-            $table->foreign('poll_id')->references('id')->on('polls');
+            $table->foreign('option_id')->references('id')->on('options')->onDelete('cascade');
+            $table->foreign('poll_id')->references('id')->on('polls')->onDelete('cascade');
         });
     }
 
