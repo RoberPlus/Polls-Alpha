@@ -149,7 +149,8 @@ class PollController extends Controller
     public function vote(Request $request, $id)
     {
         $data = $request->validate([
-            'vote' => 'required'
+            'status' => 'required',
+            'role' => 'required'
         ]);
 
         $poll = Poll::find($id);

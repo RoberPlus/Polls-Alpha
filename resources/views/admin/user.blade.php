@@ -112,17 +112,15 @@
                         </div>
 
                         <div class="mr-8 flex capitalize text-gray-600 dark:text-gray-400">
-                            <form method="POST" action="{{ route('users.update', ['id' => $user->id]) }}" enctype="multipart/form-data" novalidate>
-                                @csrf
-                                @method('PUT')
-                                <button type="submit" class="flex items-center focus:outline-none border rounded-full py-2 px-6 leading-none border-gray-500 dark:border-gray-600 select-none hover:bg-gray-400 hover:text-white dark-hover:text-gray-200">
-                                    <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
-                                        </path>
-                                    </svg>
-                                    <span>Editar</span>
-                                </button>
-                            </form>
+                            <form action="">
+                            <button type="button" id="editar" class="flex items-center focus:outline-none border rounded-full py-2 px-6 leading-none border-gray-500 dark:border-gray-600 select-none hover:bg-gray-400 hover:text-white dark-hover:text-gray-200">
+                                <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                    </path>
+                                </svg>
+                                <span>Editar</span>
+                            </button>
+                        </form>
                             <form action="{{ route('users.destroy', ['id' => $user->id]) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
@@ -140,7 +138,56 @@
                     </div>
 
                 </div>
+                <div class="px-3 py-4 mx-auto hidden w-4/6" id="edicion">
+                    <form  method="POST" action="{{ route('users.update', ['id' => $user->id]) }}" enctype="multipart/form-data" novalidate>
+                        @csrf
+                        @method('PUT')
+                    <table class="w-2/4 text-md bg-white shadow-md rounded mb-4">
+                        <tbody>
+                            <tr class="border-b">
+                                <th class="text-left p-3 px-5">Estado</th>
+                                <th class="text-left p-3 px-5">Rol</th>
+                                <th></th>
+                            </tr>
+                            <tr class="border-b hover:bg-orange-100 bg-gray-100">
+                                <td class="p-3 px-5">
+                                    <select name="status" class="bg-transparent">
+                                        <option selected value=" ">--- Selecciona ---</option>
+                                        <option value="Enabled">Enabled</option>
+                                        <option value="Disabled">Disabled</option>
+                                    </select>
+                                </td>
+                                <td class="p-3 px-5">
+                                    <select name="role" class="bg-transparent capitalize">
+                                        <option selected value=" ">--- Selecciona ---</option>
+                                        <option value="user">User</option>
+                                        <option value="admin">Admin</option>
+                                        <option value="veedor">Veedor</option>
+                                    </select>
+                                </td>
+                                <td class="p-3 px-5 flex justify-end">
+                                    <button type="submit" class="bg-green-500 w-full hover:bg-green-700 text-gray-100 p-2 focus:outline-none focus:shadow-outline uppercase">Editar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </form>
+                </div>
             @endforeach
         </div>
     </main>
+@endsection
+
+@section('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+        crossorigin="anonymous">
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#editar").click(function() {
+                $("#edicion").fadeToggle("slow", "linear");
+            });
+        });
+    </script>
 @endsection

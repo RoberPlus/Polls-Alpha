@@ -28,20 +28,19 @@ class AdminUserController extends Controller
         return redirect()->back()->with('success', 'Se ha eliminado el usuario con exito!');
     }
 
-    public function update($id)
+    public function update(Request $request, $id)
     {
+        $data = $request->validate([
+            'status' => 'required',
+            'role' => 'required'
+        ]);
+
         $user = User::findOrFail($id);
-        $status = $user->status;
+        $user->status = $data['status'];
+        $user->role = $data['role'];
 
-        if ($status == 'active') {
-            $user->status = 'disable';
-            $user->save();
-        }else {
-            $user->status = 'active';
-            $user->save();
-            
-        }
+        $user->save();
 
-        return redirect()->back()->with('success', 'Se ha modificado la votacion con exito!'); 
+        return redirect()->back()->with('success', 'Se ha modificado el usuario con exito!'); 
     }
 }
